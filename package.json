@@ -1,0 +1,23 @@
+{
+  "name": "miniapp-color-thief",
+  "version": "1.0.0",
+  "description": "color thief for mini app (wechat / Alipay / Baidu...)",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neobaran/miniapp-color-thief.git"
+  },
+  "keywords": [
+    "color"
+  ],
+  "author": "NEOBARAN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neobaran/miniapp-color-thief/issues"
+  },
+  "homepage": "https://github.com/neobaran/miniapp-color-thief#readme",
+  "dependencies": {
+    "quantize": "^1.0.2"
+  }
+}
