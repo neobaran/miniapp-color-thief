@@ -38,8 +38,6 @@ const colorThief = pixels => ({
   },
   color(quality) {
     let palette = this.palette(5, quality).data;
-    console.log(palette);
-
     if (palette) {
       this.data = palette[0];
       return this;
