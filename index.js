@@ -6,13 +6,9 @@ const toString = array =>
     .slice(1)}`;
 
 const colorThief = pixels => ({
-  palette(colorCount, quality) {
-    if (
-      typeof colorCount === "undefined" ||
-      colorCount < 2 ||
-      colorCount > 256
-    ) {
-      colorCount = 10;
+  palette(count, quality) {
+    if (typeof count === "undefined" || count < 2 || count > 256) {
+      count = 10;
     }
     if (typeof quality === "undefined" || quality < 1) {
       quality = 10;
@@ -37,7 +33,7 @@ const colorThief = pixels => ({
         }
       }
     }
-    this.data = quantize(pixelArray, colorCount).palette() || null;
+    this.data = quantize(pixelArray, count).palette() || null;
     return this;
   },
   color(quality) {
