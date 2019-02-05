@@ -1,6 +1,6 @@
 # Mini App Color Thief
 
-基于小程序的结构，参考 [Color Thief](https://github.com/lokesh/color-thief/) 实现的获取图片主色调
+基于小程序的结构，参考 [Color Thief](https://github.com/lokesh/color-thief/) 实现的获取图片主色调，非小程序也可使用，只需是 `Uint8ClampedArray` 类型的图片数据即可
 
 [![npm](https://img.shields.io/npm/v/miniapp-color-thief.svg?style=flat-square)](https://www.npmjs.com/package/miniapp-color-thief)
 [![license](https://img.shields.io/github/license/neobaran/miniapp-color-thief.svg?style=flat-square)](./LICENSE)
@@ -27,7 +27,7 @@ wx.canvasGetImageData({
   y: 0,
   width: 100,
   height: 100,
-  success(res) {
+  success: res => {
     let palette = colorThief(res.data)
       .palette()
       .get();
@@ -36,13 +36,17 @@ wx.canvasGetImageData({
 });
 ```
 
+## Demo
+
+[微信小程序代码片段](https://developers.weixin.qq.com/s/HIEMlXmk7w5q)
+
 ## API
 
 ### Palette
 
 - 参数:
   - `{Number} count` 返回色板的颜色数量 ( 1 < count < 256 )
-  - `{Number} quality` 计算颜色的精度，默认为 10
+  - `{Number} quality` 计算颜色的精度，默认为 `10`
 - 说明:
 
   获取图片的色板
@@ -56,7 +60,7 @@ colorThief(data)
 ### Color
 
 - 参数:
-  - `{Number} quality` 计算颜色的精度，默认为 10
+  - `{Number} quality` 计算颜色的精度，默认为 `10`
 - 说明:
 
   获取图片的主色调
