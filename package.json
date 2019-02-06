@@ -1,6 +1,6 @@
 {
   "name": "miniapp-color-thief",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "color thief for mini app (wechat / Alipay / Baidu...)",
   "main": "index.js",
   "scripts": {
