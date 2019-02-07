@@ -5,6 +5,16 @@ const toString = array =>
     .toString(16)
     .slice(1)}`;
 
+const proxy = (data, fn) => {
+  if (data.map(item => Array.isArray(item)).includes(true)) {
+    return data.map(item => fn(item));
+  } else {
+    return fn(data);
+  }
+};
+
+const getGray = rgb => (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
+
 const colorThief = pixels => ({
   palette(count, quality) {
     if (typeof count === "undefined" || count < 2 || count > 256) {
@@ -33,28 +43,35 @@ const colorThief = pixels => ({
         }
       }
     }
-    this.data = quantize(pixelArray, count).palette() || null;
+    this._data = quantize(pixelArray, count).palette() || null;
     return this;
   },
   color(quality) {
-    let palette = this.palette(5, quality).data;
+    let palette = this.palette(5, quality)._data;
     if (palette) {
-      this.data = palette[0];
+      this._data = palette[0];
       return this;
     } else {
-      console.error("getColor has error: palette length is zero.");
+      console.error(
+        "[MiniApp Color Thief] getColor has error: palette length is zero."
+      );
     }
   },
   __proto__: {
     get() {
-      return this.data;
+      return this._data;
     },
     getHex() {
-      if (this.data.map(item => Array.isArray(item)).includes(true)) {
-        return this.data.map(item => toString(item));
-      } else {
-        return toString(this.data);
-      }
+      return proxy(this._data, toString);
+    },
+    getGray() {
+      return proxy(this._data, getGray);
+    },
+    isDark() {
+      return proxy(this._data, data => getGray(data) < 127.5);
+    },
+    isLight() {
+      return proxy(this._data, data => getGray(data) >= 127.5);
     }
   }
 });

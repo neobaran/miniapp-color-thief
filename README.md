@@ -42,7 +42,9 @@ wx.canvasGetImageData({
 
 ## API
 
-### Palette
+### 计算
+
+#### Palette
 
 - 参数:
   - `{Number} count` 返回色板的颜色数量 ( 1 < count < 256 )
@@ -53,11 +55,11 @@ wx.canvasGetImageData({
 
 ```javascript
 colorThief(data)
-  .palette()
+  .palette(count, quality)
   .get(); // [[0,0,0],[0,0,0],[0,0,0]...]
 ```
 
-### Color
+#### Color
 
 - 参数:
   - `{Number} quality` 计算颜色的精度，默认为 `10`
@@ -67,27 +69,37 @@ colorThief(data)
 
 ```javascript
 colorThief(data)
-  .color()
+  .color(quality)
   .get(); // [0,0,0]
 ```
 
-### Get
+### 输出
 
+#### Get
+
+- 输出:
+  - `{Array}`
 - 说明:
 
-  输出 Array 类型结果
+  返回颜色的 [R,G,B]
 
 ```javascript
+colorThief(data)
+  .palette()
+  .get(); // [[0,0,0],[0,0,0],[0,0,0]...]
+
 colorThief(data)
   .color()
   .get(); // [0,0,0]
 ```
 
-### GetHex
+#### GetHex
 
+- 输出:
+  - `{Array|String}`
 - 说明:
 
-  输出 16 进制结果
+  返回颜色的 16 进制
 
 ```javascript
 colorThief(data)
@@ -97,6 +109,60 @@ colorThief(data)
 colorThief(data)
   .color()
   .getHex(); // '#000000'
+```
+
+#### GetGray
+
+- 输出:
+  - `{Array|Number}`
+- 说明:
+
+  返回颜色灰度 `0 ~ 255`
+
+```javascript
+colorThief(data)
+  .palette()
+  .getGray(); // [0,0,0...]
+
+colorThief(data)
+  .color()
+  .getGray(); // 0
+```
+
+#### IsDark
+
+- 输出:
+  - `{Array|Boolean}`
+- 说明:
+
+  返回颜色是否为深色系
+
+```javascript
+colorThief(data)
+  .palette()
+  .isDark(); // [true,true,false...]
+
+colorThief(data)
+  .color()
+  .isDark(); // true
+```
+
+#### IsLight
+
+- 输出:
+  - `{Array|Boolean}`
+- 说明:
+
+  返回颜色是否为浅色系
+
+```javascript
+colorThief(data)
+  .palette()
+  .isLight(); // [true,true,false...]
+
+colorThief(data)
+  .color()
+  .isLight(); // true
 ```
 
 ## License
